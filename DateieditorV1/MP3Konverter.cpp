@@ -1,6 +1,8 @@
+/*Mit diesem Modul lässt sich eine Musikdatei in BIN/HEX/CHAR 
+formatieren*/
+
 #include "Hilfsfunktionen.h"
 #include "MP3Konverter.h"
-
 #include <iostream>
 #include <fstream>
 #include <iomanip> // für hex, setw, setfill

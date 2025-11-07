@@ -1,19 +1,21 @@
+
+
+/*Dieses Modul ermöglicht die Bearbeitung von den erzeugten Dateien,
+dabei wird immer nur eine Datei genommen und an der angegeben verändert.
+Man kann auswählen zwischen einfügen bzw. anhängen oder 
+bestehende Daten ändern*/
+
+
+
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <sstream>
 #include <iomanip>
-//#define BOOST_TEST_MODULE DateiFunktionTest
-//#include <boost/test/included/unit_test.hpp>
 
 using namespace std;
 
-/*
- * Datei an einer Stelle verändern:
- * - wenn append = false: Daten überschreiben (ersetzen)
- * - wenn append = true: Daten einfügen (hinzufügen), Verschiebung des Inhalts
- */
 
 bool datenAnStelleVeraendern(const string& dateiPfad, size_t position,
     const string neueDaten, bool append = false) {
@@ -75,42 +77,4 @@ bool datenAnStelleVeraendern(const string& dateiPfad, size_t position,
 
  
 
-/*BOOST_AUTO_TEST_CASE(TestEinfügen) {
-    const string testfile = "test.bin";
 
-    // Erstelle eine Testdatei
-    ofstream f(testfile, ios::binary);
-    f << "ABCDEFGH";
-    f.close();
-
-    // Neue Daten einfügen
-    BOOST_CHECK(datenAnStelleVeraendern(testfile, 3, "XYZ", true));
-
-    // Inhalt prüfen
-    ifstream fin(testfile, ios::binary);
-    string inhalt((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
-    fin.close();
-
-    BOOST_CHECK_EQUAL(inhalt, "ABCXYZDEFGH");
-
-    // Datei cleanup
-    remove(testfile.c_str());
-}
-
-BOOST_AUTO_TEST_CASE(TestÜberschreiben) {
-    const string testfile = "test2.bin";
-
-    ofstream f(testfile, ios::binary); 
-    f << "1234567890";
-    f.close();
-
-    BOOST_CHECK(datenAnStelleVeraendern(testfile, 4, "ABCD", false));
-
-    ifstream fin(testfile, ios::binary);
-    string inhalt((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
-    fin.close();
-
-    BOOST_CHECK_EQUAL(inhalt, "1234ABCD90");
-
-    remove(testfile.c_str());
-}*/

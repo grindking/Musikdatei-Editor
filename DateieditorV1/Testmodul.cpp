@@ -1,3 +1,19 @@
+
+
+/*In diesem Modul sind alle Tests für die einzelnen Module aufgelistet
+WICHTIG!!! : Bei Gebrauch MUSS die int main()-Funktion in DateieditorV1.cpp MUSS 
+auskommentiert werden, ansonsten kommt es zu einem Linkerfehler wegen mehrerer
+Main-Funktionen
+Gebrauchsanweisung:
+1. Zunächst die (wie bereits erwähnt)
+   main-Funktion im Modul Dateieditor.cpp in ein Kommentar einbauen
+2. Die include und define Anweisungen aus dem Kommentar nehmen
+3. Den gewünschten Test auswählen und dort auch die 
+   Kommentarzeichen entfernen
+4. Das Programm kann daraufhin normal über den Debugger ausgeführt werden*/
+
+
+
 /*#define BOOST_TEST_MODULE KonvertiereDateiTest
 #include <boost/test/included/unit_test.hpp>
 #include <fstream>
@@ -110,10 +126,9 @@ BOOST_AUTO_TEST_CASE(TestÜberschreiben) {
 }*/
 
 /*############################################################
- TEST FUER DATEIEN BEARBEITEN
+ TEST FUER EINE MUSIKDATEI IN DAS PROGRAMMVERZEICHNIS ZU KOPIEREN
  #############################################################*/
 
- // Der Test
  /*BOOST_AUTO_TEST_CASE(test_musikdateiKopieren) {
      // Testdaten vorbereiten
      string sourcedateiname = "test_source.mp3";

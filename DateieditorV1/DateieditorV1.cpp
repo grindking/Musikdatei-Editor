@@ -1,5 +1,7 @@
-// DateieditorV1.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
-//
+/*####Hauptmodul des Programms####
+Hier findet sich das realisierte Menu und die 
+Benutzereingaben für das Programm*/
+
 
 #include <iostream>
 #include <string>
@@ -13,9 +15,9 @@ int main()
 {
 
     
-    int auswahl, start, ende;
-    bool anhaengen;
-    string eingabe;
+    int auswahl, start, ende; //Variablen um die Dateipositionen zum Bearbeiten festzulegen
+    bool anhaengen; // Falls True, wird beim Datei Bearbeiten nur angehängt anstatt zu ersetzen
+    string eingabe; // Strings, um die Benutzereingaben zu puffern
     string neueDaten;
     string dateiname;
 
@@ -23,6 +25,11 @@ int main()
     cout << "Dieses Programm konvertiert MP3-Dateien zu Hex/Bin oder Char\n";
     cout << "und ermöglicht die Bearbeitung der Dateien\n";
 
+    // Hauptschleife des Programms
+    /* Das generelle Prinzip:
+    Der Benutzer gibt seine gewünschte Auswahl an, danach werden
+    die Parameter vom Benutzer abgefragt und die korrekte Funktion
+    aufgerufen*/
     while (true) {
         MenuAnzeigen();
         getline(cin, eingabe);

@@ -1,13 +1,15 @@
-#include "Hilfsfunktionen.h"
+/*Hier sind die Funktionen zum Anzeigen des Menus und der Dateien definiert.
+Außerdem zum Kopieren von einer Datei ins aktuelle Verzeichnis*/
 
+
+#include "Hilfsfunktionen.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include <string>
 #include <cctype>// für isprint
 #include <limits>
-//#define BOOST_TEST_MODULE DateiFunktionTest
-//#include <boost/test/included/unit_test.hpp>
+
 using namespace std;
 
 
@@ -24,48 +26,6 @@ void MenuAnzeigen() {
     cout << "========================================\n";
     cout << "Auswahl: ";
 }
-
-/*void DateiAnzeigen(const string& dateiPfad) {
-    // Datei im binären Modus öffnen
-    ifstream datei(dateiPfad, ios::binary);
-    if (!datei) {
-        cerr << "Fehler beim Öffnen der Datei: " << dateiPfad << endl;
-        return;
-    }
-
-    // Dateiendung ermitteln (für Ausgabeart)
-    size_t pos = dateiPfad.find_last_of(".");
-    string extensio = (pos == string::npos) ? "" : dateiPfad.substr(pos + 1);
-
-    // Byte lesen und ausgeben
-    char byte;
-    while (datei.read(&byte, 1)) {
-        unsigned char uc = static_cast<unsigned char>(byte);
-
-        if (extensio == "bin" || extensio == "BIN") {
-            // Ausgabe in Binär (8 Bits)
-            for (int i = 7; i >= 0; --i) {
-                cout << ((uc >> i) & 1);
-            }
-            cout << " ";
-        }
-        else if (extensio == "hex" || extensio == "Hex" || extensio == "HEX") {
-            // Hex-Ausgabe
-            cout << byte;
-        }
-        else if (extensio == "char" || extensio == "CHAR" || extensio == "Char") {
-                cout << byte;
-            
-        }
-        else {
-            // Standard: Hex
-            cout << hex << setw(2) << setfill('0') << (int)uc << " ";
-        }
-    }
-    cout << endl;
-
-    datei.close();
-}*/
 
 void dateiAnzeigen(const string& dateiPfad, size_t start = 0, size_t ende = 20) {
     ifstream datei(dateiPfad, ios::binary);
@@ -137,17 +97,7 @@ void dateiAnzeigen(const string& dateiPfad, size_t start = 0, size_t ende = 20) 
     cout << endl;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+//Hilfsfunktion zum Musikdatei kopieren
 bool copyFile(const string& sourcePath, const string& destPath) {
     ifstream src(sourcePath, ios::binary);
     ofstream dst(destPath, ios::binary);
@@ -177,36 +127,3 @@ void musikdateiKopieren(const string& sourcePath) {
         cerr << "Kopieren fehlgeschlagen.\n";
     }
 }
-
-
-// Der Test
-/*BOOST_AUTO_TEST_CASE(test_musikdateiKopieren) {
-    // Testdaten vorbereiten
-    string sourcedateiname = "test_source.mp3";
-    string targetdateiname = "./test_source.mp3";
-
-    // Erstelle eine Testdatei mit Testdaten
-    {
-        std::ofstream out(sourcedateiname, std::ios::binary);
-        out << "Dies ist ein Testinhalt der MP3 Datei.";
-    }
-
-    // Funktion aufrufen
-    musikdateiKopieren(sourcedateiname);
-
-    // Überprüfung: Datei existiert im aktuellen Verzeichnis
-    std::ifstream original(sourcedateiname, std::ios::binary);
-    std::ifstream kopiert(targetdateiname, std::ios::binary);
-    BOOST_REQUIRE_MESSAGE(original.is_open(), "Originaldatei konnte nicht geöffnet werden");
-    BOOST_REQUIRE_MESSAGE(kopiert.is_open(), "Kopierte Datei konnte nicht geöffnet werden");
-
-    // Inhalte vergleichen
-    std::ostringstream bufOriginal, bufKopiert;
-    bufOriginal << original.rdbuf();
-    bufKopiert << kopiert.rdbuf();
-    BOOST_CHECK_EQUAL(bufOriginal.str(), bufKopiert.str());
-
-    // Aufräumen: Testdateien löschen
-    std::remove(sourcedateiname.c_str());
-    std::remove(targetdateiname.c_str());
-}*/
