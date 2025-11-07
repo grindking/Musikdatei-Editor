@@ -26,10 +26,10 @@ int main()
     cout << "und ermöglicht die Bearbeitung der Dateien\n";
 
     // Hauptschleife des Programms
-    /* Das generelle Prinzip:
-    Der Benutzer gibt seine gewünschte Auswahl an, danach werden
-    die Parameter vom Benutzer abgefragt und die korrekte Funktion
-    aufgerufen*/
+    // Das generelle Prinzip:
+    //Der Benutzer gibt seine gewünschte Auswahl an, danach werden
+    //die Parameter vom Benutzer abgefragt und die korrekte Funktion
+    //aufgerufen
     while (true) {
         MenuAnzeigen();
         getline(cin, eingabe);
