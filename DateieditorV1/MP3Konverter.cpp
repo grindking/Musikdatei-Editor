@@ -10,6 +10,7 @@ formatieren*/
 
 using namespace std;
 
+//Diese Funktion konvertiert die Musikdatei in BIN/HEX/CHAR
 void konvertiereDatei(const string& mp3Pfad) {
     // Eingabedatei öffnen (Binärmodus)
     ifstream inputFile(mp3Pfad, ios::binary);
@@ -29,6 +30,8 @@ void konvertiereDatei(const string& mp3Pfad) {
     ofstream hexFile(baseName + ".hex");
     ofstream charFile(baseName + ".char");
 
+    //Abfrage, falls die Dateien nicht erstellt werden konnten
+    //Kann passieren bei fehlenden Berechtigungen, vollem Speicher o.ä.
     if (!binFile || !hexFile || !charFile) {
         cerr << "Fehler beim Erstellen der Ausgabedateien." << endl;
         return;
@@ -50,12 +53,14 @@ void konvertiereDatei(const string& mp3Pfad) {
         else
             charFile << '.';
     }
-
+    //Alle Dateienströme werden geschlossen
     inputFile.close();
     binFile.close();
     hexFile.close();
     charFile.close();
 
+    //Ausgabe, damit der User weiß, dass konvertiert wurde und wie die 
+    //Dateien heißen
     cout << "Konvertierung abgeschlossen:\n"
         << " -> " << baseName << ".bin\n"
         << " -> " << baseName << ".hex\n"

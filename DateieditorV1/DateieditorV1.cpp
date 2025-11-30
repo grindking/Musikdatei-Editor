@@ -21,6 +21,7 @@ int main()
     string neueDaten;
     string dateiname;
 
+    //Eine kurze Erklärung zum Programmstart wird ausgegeben
     cout << "Hallo!\n";
     cout << "Dieses Programm konvertiert MP3-Dateien zu Hex/Bin oder Char\n";
     cout << "und ermöglicht die Bearbeitung der Dateien\n";
@@ -33,33 +34,30 @@ int main()
     while (true) {
         MenuAnzeigen();
         getline(cin, eingabe);
+        //Eingaben, die ein bestimmtes Format erwarten, werden mit einem
+        // try...catch-Block abgefangen um Programmabstürze zu vermeiden
         try {
-            auswahl = stoi(eingabe);
+            auswahl = stoi(eingabe); //Die Eingabe wird zu Integer konvertiert und abgespeicher in 'auswahl'
         }
         catch (...) {
             cerr << "Ungültige Zahl!\n";
             continue;
         }
 
-
-        if (cin.fail()) {
-            
-            cout << "Das hat nicht geklappt. Bitte gebe eine Zahl ein.\n";
-            continue;
-        }
-
         switch (auswahl) {
+        // Bei '0' wird das Programm beendet
         case 0:
             cout << "Bis dann!\n";
             return 0;
 
+        // Bei 1 wird eine Musikdatei konvertiert
         case 1:
             
             cout << "Bitte gebe den Namen der zu konvertierenden Musikdatei an:";
             getline(cin, dateiname);
             konvertiereDatei(dateiname);
             break;
-
+        // Bei 2 wird ein Ausschnitt aus einer Datei angezeigt
         case 2:
             
             cout << "Bitte gebe den Namen der anzuzeigenden Datei an (mit Dateiendung .bin/.char/.hex):";
@@ -67,6 +65,8 @@ int main()
             
             cout << "Bitte gebe die Startposition zum Anzeigen der Datei an:";
             getline(cin, eingabe);
+            //Eingaben, die ein bestimmtes Format erwarten, werden mit einem
+            // try...catch-Block abgefangen um Programmabstürze zu vermeiden
             try {
                 start = stoi(eingabe);
             }
@@ -77,6 +77,8 @@ int main()
             
             cout << "Bitte gebe die Endposition zum Anzeigen der Datei an:";
             getline(cin, eingabe);
+            //Eingaben, die ein bestimmtes Format erwarten, werden mit einem
+            // try...catch-Block abgefangen um Programmabstürze zu vermeiden
             try {
                 ende = stoi(eingabe);
             }
@@ -86,7 +88,7 @@ int main()
             }
             dateiAnzeigen(dateiname, start, ende);
             break;
-
+        //Bei '3' wird die angegebene Datei bearbeitet
         case 3:
             
             cout << "Bitte gebe den Namen der zu bearbeitenden Datei an (mit Dateiendung .bin/.char/.hex):";
@@ -94,6 +96,8 @@ int main()
 
             cout << "Bitte gebe die Position zum Bearbeiten der Datei an:";
             getline(cin, eingabe);
+            //Eingaben, die ein bestimmtes Format erwarten, werden mit einem
+           // try...catch-Block abgefangen um Programmabstürze zu vermeiden
             try {
                 start = stoi(eingabe);
             }
@@ -107,6 +111,8 @@ int main()
             
             cout << "Bitte gebe eine '1' ein, falls du die Daten anhängen möchtest, ansonsten eine '0' falls du sie ersetzen möchtest:";
             getline(cin, eingabe);
+            //Eingaben, die ein bestimmtes Format erwarten, werden mit einem
+            // try...catch-Block abgefangen um Programmabstürze zu vermeiden
             try {
                 anhaengen = stoi(eingabe);
 
@@ -120,7 +126,7 @@ int main()
             }
             datenAnStelleVeraendern(dateiname, start, neueDaten, anhaengen);
             break;
-
+        //Bei '4' wird eine Musikdatei ins aktuelle Verzeichnis kopiert
         case 4:
             
             cout << "Bitte gebe den Dateipfad zur neuen Datei an:";

@@ -12,7 +12,7 @@ Auﬂerdem zum Kopieren von einer Datei ins aktuelle Verzeichnis*/
 
 using namespace std;
 
-
+//Diese Funktion gibt das Menu aus
 void MenuAnzeigen() {
     cout << "\n";
     cout << "========================================\n";
@@ -27,8 +27,13 @@ void MenuAnzeigen() {
     cout << "Auswahl: ";
 }
 
+// Mit dieser Funktion lassen sich die einzelnen Dateien anzeigen
+// Der Dateiname, Anfang und Ende des anzuzeigenden Bereichs m¸ssen an die 
+// Funktion ¸bergeben werden
 void dateiAnzeigen(const string& dateiPfad, size_t start = 0, size_t ende = 20) {
     ifstream datei(dateiPfad, ios::binary);
+
+    //Standardabfrage, ob die Datei existiert
     if (!datei) {
         cerr << "Fehler beim ÷ffnen der Datei: " << dateiPfad << endl;
         return;
@@ -76,14 +81,17 @@ void dateiAnzeigen(const string& dateiPfad, size_t start = 0, size_t ende = 20) 
             break;
         unsigned char uc = static_cast<unsigned char>(byte);
 
+        //Eine Bin‰rdatei einlesen
         if (extension == "bin" || extension == "BIN") {
             for (int bit = 7; bit >= 0; --bit)
                 cout << ((uc >> bit) & 1);
             cout << " ";
         }
+        //Eine Hex-Datei einlesen
         else if (extension == "hex" || extension == "HEX") {
             cout << hex << setw(2) << setfill('0') << (int)uc << " ";
         }
+        //Eine Char-Datei einlesen
         else if (extension == "char" || extension == "CHAR") {
             if (isprint(uc))
                 cout << byte;
@@ -99,19 +107,24 @@ void dateiAnzeigen(const string& dateiPfad, size_t start = 0, size_t ende = 20) 
 
 //Hilfsfunktion zum Musikdatei kopieren
 bool copyFile(const string& sourcePath, const string& destPath) {
+
+    //÷ffnen der Dateien im Lesemodus bzw. Eingabemodus
     ifstream src(sourcePath, ios::binary);
     ofstream dst(destPath, ios::binary);
 
+    //Standardabfrage, ob die Datei existiert
     if (!src || !dst) {
         cerr << "Fehler beim ÷ffnen der Datei.\n";
         return false;
     }
 
-    dst << src.rdbuf();
+    dst << src.rdbuf(); // Der Dateiinhalt wird in die neue Datei geschrieben
 
     return src && dst;
 }
 
+//Mit dieser Funktion wird die Musikdatei ins aktuelle Programmverzeichnis kopiert
+// Macht Gebrauch von der copyFile()-Funktion
 void musikdateiKopieren(const string& sourcePath) {
     // Hole den Dateinamen aus dem Pfad
     size_t pos = sourcePath.find_last_of("/\\");
@@ -120,6 +133,8 @@ void musikdateiKopieren(const string& sourcePath) {
     // Zielpfad im aktuellen Verzeichnis
     string destination = "./" + dateiname;
 
+    //Es wird versucht die Datei zu kopieren, bei Fehlschlag wird eine
+    //Fehlernachricht ausgegeben
     if (copyFile(sourcePath, destination)) {
         cout << "Datei wurde erfolgreich kopiert: " << destination << endl;
     }

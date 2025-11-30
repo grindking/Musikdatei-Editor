@@ -6,7 +6,7 @@ Man kann auswählen zwischen einfügen bzw. anhängen oder
 bestehende Daten ändern*/
 
 
-
+//Eingebundene Bibliotheken
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -16,7 +16,8 @@ bestehende Daten ändern*/
 
 using namespace std;
 
-
+//Funktion um eine Datei an einer bestimmten Stelle zu verändern
+//Funktioniert für HEX/BIN/CHAR Dateien
 bool datenAnStelleVeraendern(const string& dateiPfad, size_t position,
     const string neueDaten, bool append = false) {
     // Ablauf, um bei 'append' die ganze Datei neu zu schreiben
@@ -34,7 +35,7 @@ bool datenAnStelleVeraendern(const string& dateiPfad, size_t position,
 
         vector<unsigned char> datenInhalt(dateiGroesse);
         datei.read(reinterpret_cast<char*>(datenInhalt.data()), dateiGroesse);
-
+        //Standardabfrage, ob die Datei existiert
         if (!datei) {
             cerr << "Fehler beim Lesen der Datei." << endl;
             return false;
